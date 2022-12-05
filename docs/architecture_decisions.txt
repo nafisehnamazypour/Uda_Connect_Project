@@ -1,0 +1,28 @@
+Architecture decision making:
+
+Connection API (REST API):
+I Created a microservice without any changes.
+
+Frontend (REST API):
+I didn't change it.
+
+Person API (REST API):
+I Created a microservice without any changes.
+
+Location microservice (REST API):
+In new architecture I left possibility of a loading Location ID 
+from the database through REST API.
+
+Location generator (gRPC + Message Queue (Kafka)):
+Loading location data supposed handling the large volume and streaming data  while
+the lovcation generator is dumb and the microservice which consumes
+this location is smart. In addition, it should recieve messages without missing.
+So, I used Kafka. The consumer will pick the data from kafka when ever it is needed
+and it will not miss any data.
+Therefore in new architecture I realised loading new location using 
+gRPC (compared to REST, gRPC provides better performance) 
+and Kafka which is more reliable at large volume of data.
+
+
+
+
